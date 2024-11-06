@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_name %}{{post.title}}{% endblock page_name %}
+
+{% block css_files %}
+ <link rel="stylesheet" href="{%static "blog/header.css" %}"/>
+ <link rel="stylesheet" href="{%static "blog/post.css" %}"/>
+{% endblock css_files %}
+
+{% block content %}
+  {% include "blog/includes/header.html" %}
+  <div class="container-container">
+    <div class="container">
+      <div class="meta-container">
+        <h1>{{post.title}}</h1>
+        <div class="meta-image-author-time-container">
+          <img class="meta-image" src="{{post.image_url}}"/>
+          <h4>By {{post.author}}</h4>
+          <div class="meta-time-container">
+            <p>Last Updated on</p>
+            <h4>{{post.time}}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="description-container">
+        <p>{{post.description}}</p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_name %}
+  My Blog Site
+{% endblock page_name %}
+
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "blog/header.css" %}"/>
+ <link rel="stylesheet" href="{% static "blog/index.css" %}"/>
+{% endblock css_files %}
+
+{% block content %}
+  {% include "blog/includes/header.html" %}
+  <div class="info">
+    <div class="index-image-title-container">
+    <div class="index-image-title">
+      <img class="index-image" src="{% static "pass_photo.jpg" %}"/>
+      <h1 class="index-title">Sameer's BLOG</h1>
+    </div>
+  </div>
+    <p class="welcome-text">Hi, I am Sameer and I love to blog about tech and the world!</p>
+  </div>
+  <div class="posts-heading-container-container">
+    <div class="posts-heading-container">
+      <h4 class="heading">My Latest Thoughts</h4>
+      <div class="posts-container"> 
+      {% for post in  posts%}
+        <div class="post">
+          <a href="{% url "single-post" id=post.id%}">
+            <img src="{{post.image_url}}"/>
+            <div class="post-title-meta">
+              <h3>{{post.title}}</h3>
+              <p>{{post.meta}}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

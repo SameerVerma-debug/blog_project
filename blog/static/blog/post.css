@@ -1,0 +1,32 @@
+.container-container{
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:80vw;
+  padding:20px;
+  padding-top:40px;
+  gap:40px;
+}
+
+.meta-container{
+  display: flex;
+  width: 100%;
+  gap:20px;
+  justify-content: space-around;
+}
+
+.meta-image{
+  transform: rotate(5deg);
+  border-radius: 10px;
+  border:2px solid lightgray;
+}
+
+.description-container{
+  width: 100%;
+  text-align: justify;
+}
