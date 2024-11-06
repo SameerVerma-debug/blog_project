@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block page_name %}404 Page{% endblock page_name %}
+
+{% block content %}
+  <div>
+    <h1>This URL does not exist!!</h1>
+    <a href="{% url "index" %}">Click here to go to home page</a>
+  </div>
+{% endblock content %}
