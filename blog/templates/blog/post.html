@@ -20,12 +20,20 @@
           <h4>By {{post.author}}</h4>
           <div class="meta-time-container">
             <p>Last Updated on</p>
-            <h4>{{post.time}}</h4>
+            <h4>{{post.date}}</h4>
+            <div class="tags-container">
+              <h4>Tags: </h4>
+              <div class="tags">
+                {% for tag in  post_tags%}
+                <a href="{{tag.get_absolute_url}}">{{tag.caption}}</a>
+                {% endfor %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="description-container">
-        <p>{{post.description}}</p>
+        <p>{{post.content}}</p>
       </div>
     </div>
   </div>

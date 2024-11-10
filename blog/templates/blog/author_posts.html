@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_name %}{{author_name}} posts{% endblock page_name %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "blog/header.css" %}"/>
+  <link rel="stylesheet" href="{% static "blog/posts.css" %}"/>
+{% endblock css_files %}
+
+{% block content %}
+  {% include "blog/includes/header.html" %}
+  <div class="container">
+    <h1>{{author_name}}'s Posts</h1>
+    <div class="posts-container">
+      {% for post in author_posts %}
+        {% include "blog/includes/post_title_meta.html" %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

@@ -24,13 +24,42 @@
   flex-wrap: wrap;
 }
 
+.meta-image-author-time-container{
+  width:50vw;
+  max-width:500px;
+}
+
 .meta-image{
-  transform: rotate(5deg);
   border-radius: 10px;
   border:2px solid lightgray;
+  width:100%;
+  height:auto;
 }
 
 .description-container{
   width: 100%;
   text-align: justify;
+}
+
+.tags-container{
+  display: flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.tags{
+  display: flex;
+  gap:10px;
+}
+
+.tags-container a{
+  padding:2px;
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 4px;
+  transition: all 0.2s;
+  &:hover{
+    background-color: black;
+    color:white;
+  }
 }

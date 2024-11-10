@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_name %}{{ tag_name}}{% endblock page_name %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "blog/posts.css" %}"/>
+  <link rel="stylesheet" href="{% static "blog/header.css" %}"/>
+  {% comment %} <link rel="stylesheet" href="{% static "styles.css" %}"/> {% endcomment %}
+{% endblock css_files %}
+
+{% block content %}
+  {% include "blog/includes/header.html" %}
+  <div class="container">
+    <h1><span>Posts related to </span>{{ tag_name }}</h1>
+    <div class="posts-container">
+      {% for post in tag_posts%}
+        {% include "blog/includes/post_title_meta.html" %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

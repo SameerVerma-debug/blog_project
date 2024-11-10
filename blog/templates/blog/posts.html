@@ -14,15 +14,7 @@
     <h1>All Blogs</h1>
     <div class="posts-container">
       {% for post in posts %}
-        <div class="post">
-          <a href="{% url "single-post" id=post.id%}">
-            <img src="{{post.image_url}}"/>
-            <div class="post-text">
-              <h4>{{post.title}}</h4>
-              <p>{{post.meta}}</p>
-            </div>
-          </a>
-        </div>
+        {% include "blog/includes/post_title_meta.html" %}
       {% endfor %}
     </div>
   </div>
