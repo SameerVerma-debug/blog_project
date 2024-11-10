@@ -29,6 +29,10 @@
   max-width:500px;
 }
 
+.author-link{
+  color: purple;
+}
+
 .meta-image{
   border-radius: 10px;
   border:2px solid lightgray;
