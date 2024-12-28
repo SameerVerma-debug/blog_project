@@ -38,12 +38,16 @@ class SinglePost(View):
             found_post = Post.objects.get(slug=slug.lower(), id=int(id))
             found_post_tags = found_post.tags.all()
             found_post_comments = found_post.comments.all()
-            
-            print("----",found_post_comments)
+            read_later_posts = request.session.get("read_later_posts")
+            is_read_later = False
+            if id in read_later_posts:
+              is_read_later = True
+              
             return render(request, "blog/post.html", {
                 "post": found_post,
                 "post_tags": found_post_tags,
-                "post_comments":found_post_comments
+                "post_comments":found_post_comments,
+                "is_read_later":is_read_later
             })
         except:
             raise Http404()
@@ -130,3 +134,32 @@ class AddComment(View):
       
     except:
       return HttpResponseServerError()
+    
+class ReadLater(View):
+  def get(self,request):
+    read_later_list = request.session.get("read_later_posts")
+    
+    read_later_posts = Post.objects.filter(id__in = read_later_list)
+    
+    return render(request,"blog/read_later.html",{
+      "read_later_posts":read_later_posts
+    })
+  
+  def post(self,request):
+    post_id = int(request.POST["post_id"])
+    
+    read_later_posts = request.session.get("read_later_posts")
+    
+    if read_later_posts is None:
+      read_later_posts = []
+      
+    if post_id not in read_later_posts:
+      read_later_posts.append(post_id)
+    else:
+      read_later_posts.remove(post_id)
+    
+    request.session["read_later_posts"] = read_later_posts
+    
+    return HttpResponseRedirect(reverse("index"))
+      
+    

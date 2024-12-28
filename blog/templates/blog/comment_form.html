@@ -2,9 +2,14 @@
 {% load static %}
 {% block page_name %}Add Comment{% endblock page_name %}
 
-{% block css_files %}{% endblock css_files %}
+{% block css_files %}
+  <link rel="stylesheet" href="{% static "blog/header.css" %}"/>
+  {% comment %} <link rel="stylesheet" href="{% static "blog/form.css" %}"/> {% endcomment %}
+{% endblock css_files %}
 
 {% block content %}
+  {% include "blog/includes/header.html" %}
+  <h1>Post a Comment</h1>
   <form method="POST">
     {% csrf_token %}
     {% for field in form %}

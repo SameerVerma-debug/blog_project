@@ -29,13 +29,19 @@
                 {% endfor %}
               </div>
             </div>
+            <div class="read-later">
+              <form method="POST" action="{% url "read-later" %}">
+                {% csrf_token %}
+                <input type="hidden" value = {{ post.id }} name="post_id"/>
+                <button>{% if is_read_later %}Remove From Read Later {% else %}Read Later{% endif %}</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
       <div class="description-container">
         <p>{{post.content}}</p>
       </div>
-
       <div>
         <h3>Comments</h3>
         <a href="{% url "add-comment" id=post.id%}">Add Comment</a>

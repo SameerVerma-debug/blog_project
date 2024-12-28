@@ -10,5 +10,6 @@ urlpatterns = [
     path('posts/add-comment/<int:id>',views.AddComment.as_view(),name="add-comment"),
     path('posts/<str:slug>/<int:id>', views.SinglePost.as_view(), name="single-post"),
     path('tag/<str:tag_name>', views.TagPosts.as_view(), name="tag-posts"),
-    path('author/posts/<int:id>/', views.AuthorPosts.as_view(), name="author-posts")
+    path('author/posts/<int:id>', views.AuthorPosts.as_view(), name="author-posts"),
+    path('read-later',views.ReadLater.as_view(),name="read-later")
 ]
