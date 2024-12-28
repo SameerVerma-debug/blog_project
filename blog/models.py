@@ -23,14 +23,13 @@ class Tag(models.Model):
     return f"{self.caption}"
   
   def get_absolute_url(self):
-      return reverse("tag-posts", args=[self.caption])
-  
+      return reverse("tag-posts", args=[self.caption])  
 
 class Post(models.Model):
   title=models.CharField(max_length=200)
   meta = models.TextField()
-  image_url = models.URLField()
-  date = models.DateTimeField()
+  image = models.ImageField(upload_to="images",null=True)
+  date = models.DateTimeField(auto_now=True)
   slug = models.SlugField(db_index=True)
   content = models.TextField()
   author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="posts")
@@ -46,4 +45,14 @@ class Post(models.Model):
     
   def get_absolute_url(self):
       return reverse("single-post",args=[self.slug,self.id])
+  
+  
+class Comment(models.Model):
+  user_name = models.CharField(max_length=50)
+  description = models.TextField()
+  date = models.DateField(auto_now=True)
+  post = models.ForeignKey(Post,on_delete=models.CASCADE, related_name="comments")
+  
+  def __str__(self):
+    return f"By {self.user_name} on post {self.post.title}"
   

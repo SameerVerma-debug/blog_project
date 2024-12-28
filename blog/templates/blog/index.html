@@ -20,7 +20,7 @@
       <h1 class="index-title">Sameer's BLOG</h1>
     </div>
   </div>
-    <p class="welcome-text">Hi, I am Sameer and I love to blog about tech and the world!</p>
+    <p class="welcome-text">Hi, I am Sameer and you can post your blogs on my site</p>
   </div>
   <div class="posts-heading-container-container">
     <div class="posts-heading-container">
@@ -29,7 +29,7 @@
       {% for post in  posts%}
         <div class="post">
           <a href="{{ post.get_absolute_url }}">
-            <img src="{{post.image_url}}"/>
+            <img src="{{post.image.url}}"/>
             <div class="post-title-meta">
               <h3>{{post.title}}</h3>
               <p>{{post.meta}}</p>

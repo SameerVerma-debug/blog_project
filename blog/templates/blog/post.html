@@ -16,7 +16,7 @@
       <div class="meta-container">
         <h1>{{post.title}}</h1>
         <div class="meta-image-author-time-container">
-          <img class="meta-image" src="{{post.image_url}}"/>
+          <img class="meta-image" src="{{post.image.url}}"/>
           <h4>By <span><a class="author-link" href="{{post.author.get_absolute_url}}">{{post.author.first_name}} {{post.author.last_name}}</a></span></h4>
           <div class="meta-time-container">
             <p>Last Updated on</p>
@@ -34,6 +34,19 @@
       </div>
       <div class="description-container">
         <p>{{post.content}}</p>
+      </div>
+
+      <div>
+        <h3>Comments</h3>
+        <a href="{% url "add-comment" id=post.id%}">Add Comment</a>
+        <div>
+          {% for comment in post_comments %}
+            <div>
+              <h4>{{ comment.user_name }}</h4>
+              <p> {{ comment.description }} </p>
+            </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
