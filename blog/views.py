@@ -118,10 +118,9 @@ class AddComment(View):
       form = AddCommentForm(request.POST)
       
       if form.is_valid():
-        user_name = form.cleaned_data.get("name")
-        description = form.cleaned_data.get("description")
+        comment = form.save(commit=False)
         post = Post.objects.get(pk = id)
-        comment = Comment(user_name = user_name, description = description, post = post)
+        comment.post = post
         comment.save()
         return HttpResponseRedirect(reverse("single-post",args=(post.slug,id)))
       

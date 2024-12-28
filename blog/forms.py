@@ -19,8 +19,11 @@ class AddPostForm(forms.ModelForm):
       },
     } 
     
-class AddCommentForm(forms.Form):
-  name = forms.CharField(max_length=50,label="Name",error_messages={
-    "required": "Name is required"
-  })
-  description = forms.CharField(widget=forms.Textarea())
+class AddCommentForm(forms.ModelForm):
+  class Meta:
+    model = Comment
+    fields = "__all__"
+    exclude = ("post",)
+    labels = {
+      "user_name":"Name",
+    }
